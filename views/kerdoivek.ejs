@@ -1,0 +1,29 @@
+<%- include('layouts/header')  %>
+		<h1>Kérdőívek</h1>
+		<table>
+			<% if (statusz === 'p') { %>
+				<% kerdoivek.forEach(element => { %>
+					<tr>
+						<td><a href="/teszt/?cim=<%= element.cim %>"><%= element.cim %></a></td>
+						<td><a href="/teszt/modosit/?cim=<%= element.cim %>"><span class="material-symbols-outlined">edit</span></a></td>
+						<td><a href="/teszt/torol/?cim=<%= element.cim %>"><span class="material-symbols-outlined">delete</span></a></td>
+					</tr>
+				<% }) %>
+			<% } else if (statusz === 't') { %>
+				<% kerdoivek.forEach(element => { %>
+					<% if (element.cim === 'Oktató') { %>
+						<% for (let i = 0; i < tanarok.length; i++) { %>
+							<tr>
+								<td><a href="/teszt/?cim=<%= element.cim %>_<%= tanarok[i] %>">Oktató <%= tanarok[i] %></a></td>
+							</tr>
+						<% } %>
+					<% } else { %>
+						<tr>
+							<td><a href="/teszt/?cim=<%= element.cim %>"><%= element.cim %> <%=   %> </a></td>
+						</tr>
+					<% } %>
+				<% }) %>
+			<% } %>
+		</table>
+	</body>
+</html>

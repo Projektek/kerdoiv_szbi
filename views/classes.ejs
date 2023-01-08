@@ -1,0 +1,21 @@
+<%- include('layouts/header')  %> 
+        <h1>Osztályok</h1>
+        <form action="/classes" method="post">
+            <table>
+                <tr>
+					<td></td>
+					<td>Létszám</td>
+				</tr>
+                <% classes.forEach(element => { %>
+					<tr>
+						<td><%= element.osztaly %></td>
+						<td>
+							<input type="number" name="<%= element.osztaly %>" value="<%= element.letszam %>" min="0" />
+						</td>
+					</tr>
+				<% }) %>
+            </table>
+            <button>Feldolgoz</button>
+        </form>
+    </body>
+</html>

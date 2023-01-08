@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="kepek/logo.jpg" type="image/x-icon" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+        <link rel="stylesheet" href="/css/stilus.css" />
+        <title>Kérdőív</title>
+    </head>
+    <body>
+        <nav>
+            <% if (statusz === 'p') { %>
+                <li>
+                    <a href="/classes"><span>Osztályok</span></a>
+                </li>
+                <li>
+                    <a href="/tanar"><span>Tanárok</span></a>
+                </li>
+                <li>
+                    <a href="/kihol"><span>Ki hol tanít</span></a>
+                </li>
+                <li>
+                    <a href="/kerdoiv"><span>Kérdőív sablon</span></a>
+                </li>
+                <li>
+                    <a href="/kerdoivek"><span>Kérdőívek</span></a>
+                </li>
+                <li>
+                    <a href="/ertekeles"><span>Értékelések</span></a>
+                </li>
+            <% } else if (statusz === 't') { %>
+                <li>
+                    <a href="/kerdoivek"><span>Tanulói Kérdőívek</span></a>
+                </li>
+            <% }%>
+            <li>
+                <a href="/kilep"><span>Kilép</span></a>
+            </li>
+        </nav>
+		<h1>Táblázat</h1>
+		<div class="tablazatok">
+			<h2><a href="/tablazatok/?cim=<%= cimek %>"><%= cimek %>_<%= hol %></a></h2>
+			<% for( let i = 0; i < kerdesek.length; i++ ) { %>
+					<canvas id="myChart_<%= i %>"></canvas>
+					<br />
+			<% } %>
+		</div>
+		<script>
+			const tomb_1 = '<%- JSON.stringify(kerdesek) %>';
+			console.log(tomb_1);
+			const kerdesek = JSON.parse(tomb_1);
+			const tomb_2 = '<%- JSON.stringify(valaszok) %>';
+			const valaszok = JSON.parse(tomb_2);
+			const tomb_3 = '<%- JSON.stringify(vegsoSzamok) %>';
+			const vegsoSzamok = JSON.parse(tomb_3);
+
+			for (let i = 0; i < kerdesek.length; i++) {
+				const ctx = document
+					.getElementById(`myChart_${i}`)
+					.getContext('2d');
+				const myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: valaszok,
+						datasets: [
+							{
+								label: kerdesek[i],
+								data: vegsoSzamok[i],
+								backgroundColor: [
+									'rgba(255, 99, 132, 0.2)',
+									'rgba(54, 162, 235, 0.2)',
+									'rgba(255, 206, 86, 0.2)',
+									'rgba(75, 192, 192, 0.2)',
+									'rgba(153, 102, 255, 0.2)',
+									'rgba(255, 159, 64, 0.2)',
+								],
+								borderColor: [
+									'rgba(255, 99, 132, 1)',
+									'rgba(54, 162, 235, 1)',
+									'rgba(255, 206, 86, 1)',
+									'rgba(75, 192, 192, 1)',
+									'rgba(153, 102, 255, 1)',
+									'rgba(255, 159, 64, 1)',
+								],
+								borderWidth: 1,
+							},
+						],
+					},
+					options: {
+						scales: {
+							y: {
+								beginAtZero: true,
+							},
+						},
+					},
+				});
+			}
+
+			const letoltesTartalom = '<%- JSON.stringify(letoltesTartalom)%>';
+			const mappaCim = '<%- JSON.stringify(mappaCim)%>';
+			let mappaCim_1 = mappaCim.slice(1, mappaCim.length - 1);
+			
+			let letoltesTartalom_1 = letoltesTartalom.slice(
+				1,
+				letoltesTartalom.length - 1
+			);
+
+			const blob = new Blob([letoltesTartalom_1], {
+				type: 'application/octet-stream',
+			});
+			const href = URL.createObjectURL(blob);
+			console.log(href);
+			const a = Object.assign(document.createElement('a'), {
+				href,
+				style: 'display: none',
+				download: `${mappaCim_1}`,
+			});
+			a.click();
+			URL.revokeObjectURL(href);
+			a.remove();
+		</script>
+	</body>
+</html>

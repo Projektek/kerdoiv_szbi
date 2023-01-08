@@ -1,0 +1,19 @@
+<%- include('layouts/header')  %>
+		<h1>Értékelések</h1>
+		<table>
+			<% cimek.forEach(element => { %>
+				<% if (element.includes('Oktató')) { %>
+					<% for (let i = 0; i < tanarok.length; i++) { %>
+						<tr>
+							<td><a href="/tablazatok/?cim=<%= element %>_<%= tanarok[i] %>"><%= element %> <%= tanarok[i] %></a></td>
+						</tr>
+					<% } %>
+				<% } else { %>
+					<tr>
+					<td><a href="/tablazatok/?cim=<%= element %>"><%= element %></a></td>
+				</tr>
+				<% }%>
+			<% }) %>
+		</table>
+	</body>
+</html>

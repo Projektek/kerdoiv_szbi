@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    padding: 20px;
+}
+
+.belepes {
+    align-items: center;
+    display: flex;
+    height: 60vh;
+    justify-content: center;
+}
+
+.belepes form {
+    background-color: royalblue;
+    color: whitesmoke;
+}
+
+.belepes input {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.belepes button {
+    background-color: whitesmoke;
+    color: royalblue;
+}
+
+nav {
+    background-color: royalblue;
+    color: whitesmoke;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+.menu-icon {
+    display: none;
+}
+
+nav li a {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 20px;
+    text-decoration: none;
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 20px;
+}
+
+form {
+    padding: 20px;
+}
+
+button {
+    background-color: royalblue;
+    border: none;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+input[type='number'] {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    width: 60px;
+}
+
+td {
+    border: 1px solid royalblue;
+    padding: 5px;
+    text-align: center;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+input[type='checkbox'] {
+    width: 50px;
+}
+
+.sablon {
+    align-items: center;
+    display: flex;
+    height: max(80vh, 100%);
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+}
+
+.sablon form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.sablon h2 {
+    font-size: 3em;
+}
+
+label {
+    font-size: 1.5em;
+}
+
+input[type='text'],
+input[type='password'] {
+    font-size: 1.5em;
+}
+
+.sablon input[type='text'] {
+    font-size: 1.5em;
+    width: 100%;
+}
+
+hr {
+    width: 100%;
+}
+
+a {
+    color: royalblue;
+    text-decoration: none;
+}
+
+.urlap-tarto {
+    width: 80vw;
+    margin: auto;
+}
+
+.urlap-tarto h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    padding: 20px;
+}
+
+.tablazatok {
+    margin: auto;
+    padding: 20px;
+    width: 80vw;
+}
+
+@media screen and (max-width: 850px) {
+    td {
+        float: left;
+        width: 100%;
+    }
+
+    .nav-tarto {
+        position: relative;
+    }
+
+    nav {
+        position: absolute;
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    nav li {
+        float: none;
+    }
+
+    p {
+        background-color: royalblue;
+        color: whitesmoke;
+        padding: 20px;
+    }
+
+    .nav-tarto:hover nav {
+        display: block;
+    }
+}

@@ -1,0 +1,13 @@
+<%- include('layouts/header')  %>
+		<h1>Kérdőív sablon</h1>
+		<div class="sablon">
+			<form action="/kerdoiv" method="post" autocomplete="on">
+				<label for="kerdes">Hány kérdés lesz:</label><br />
+				<input type="number" name="kerdes" id="kerdes" min="1" value="1" autofocus /><br />
+				<label for="valasz">Hány válasz lesz:</label><br />
+				<input type="number" name="valasz" id="valasz" min="1" value="1" /><br />
+				<button type="submit">Feldolgoz</button>
+			</form> 
+		</div>
+	</body>
+</html>

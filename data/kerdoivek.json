@@ -1,0 +1,57 @@
+[
+    {
+        "id": "ec1e6a7b-2132-4cbf-b00b-dd6d9c4556dd",
+        "cim": "Oktató",
+        "kerdesek": [
+            "Év elején a tantárgya oktatásának megkezdésekor vagy egy-egy projekt előtt ismerteti az elvárásokat a szülőkkel, tanulókkal.",
+            "A tanulók értékelése következetes, fejlesztő hatású.",
+            "Tervezésében figyelembe veszi a tanulói igényeket és adottságokat, a tehetséges tanulóknak fejlődési lehetőséget biztosít, a lemaradó tanulókat igyekszik felzárkóztatni.",
+            "Oktató-nevelő munkájában szerepet kap a tanulók motiválása, épít a tanulók tevékeny részvételére.",
+            "Tervezésében épít a tanulók előzetes tudására.",
+            "A tanítási órákon használja a digitális oktatás módszereit és eszközeit (pl. szakmára jellemző szoftverek vagy számítógép, okostelefon).",
+            "A tanítási órákon figyelembe veszi a tanulók szakmáját, továbbtanulási terveit.",
+            "Feleltetésnél, dolgozatírásnál mindig ismerteti az elvárásokat, amelyek segítenek felkészülni a számonkérésre.",
+            "Teljesíthető követelményeket támaszt, és aszerint értékel.",
+            "A házi feladatokat, a tanulói munkákat rendszeresen ellenőrzi és értékeli, a visszajelzései egyértelműek, tárgyilagosak, fejlesztő hatásúak."
+        ],
+        "valaszok": [
+            "nincs információm = 0",
+            "egyáltalán nem igaz = 1",
+            "többnyire nem igaz = 2",
+            "általában igaz = 3",
+            "teljesen igaz = 4"
+        ]
+    },
+    {
+        "id": "aad0720c-c792-4d76-94e0-88f325414bb3",
+        "cim": "Tanulói kérdőív",
+        "kerdesek": [
+            "Az iskola rendszeresen tájékoztat (például a diákönkormányzaton, osztályfőnökön keresztül) a tanév feladatairól és ezek megvalósulásáról.",
+            "Olyan szakmák oktatását indítja az iskola, amelyekkel a végzést követően könnyen el lehet helyezkedni a térségben.",
+            "Az iskola figyelembe veszi a tanulók véleményét, javaslatait (pl. működtet diákönkormányzatot, ötletláda áll rendelkezésre, stb.).",
+            "A tanulók igényeiknek megfelelően részt vehetnek fejlesztő órákon, védőnő, pszichológus, gyógypedagógus, gyógytestnevelő vagy egyéb előadók által tartott foglalkozásokon.",
+            "Az iskola eredményesen segíti a tanulmányaikban lemaradó tanulókat.",
+            "Az iskola lehetőséget teremt a tehetség kibontakoztatására.",
+            "Az iskola lehetőséget biztosít a tanórán kívüli tevékenységekre (szakkör, szabadidős tevékenységek).",
+            "Az iskola nagy hangsúlyt fektet a vizsgákra (ágazati alapvizsgára, érettségi vizsgára, szakmai vizsgára) történő felkészítésre.",
+            "Az iskolában alkalmazzák a projektoktatást.",
+            "Az iskolában változatos módszereket alkalmaznak, mint pl. csoportmunka, számítógéppel végzendő feladatok, szemléltetés, magyarázat stb.",
+            "Az iskola az elsajátítandó szakmai tartalmak kialakítása során figyelembe veszi azoknak a vállalkozásoknak a véleményét, ahol a tanulók munkaszerződéssel tanulnak.",
+            "Az iskola egyértelműen meghatározza a tanulók értékelésének a módszereit, az értékelés eljárásrendjét, amelyeket megismertetnek a tanulókkal.",
+            "Az oktatók azonos elvek mentén kialakított értékelési módszereket, eljárásokat alkalmaznak.",
+            "Az iskola biztosítja a digitális oktatás feltételrendszerét a digitális tartalom, az oktatói tudás és az eszközpark területén.",
+            "A vállalkozások (kiemelten azok, ahol a tanulók munkaszerződéssel tanulnak) az iskolában vagy a vállalkozásnál bemutatják a legmodernebb eszközöket, technológiákat, digitális eszközöket, szoftvereket.",
+            "Az iskola nagy hangsúlyt fektet arra, hogy a tanulók digitális felkészültsége megfelelő legyen.",
+            "Az iskola a szakmai órákon nagy hangsúlyt fektet a környezeti fenntarthatóságra, és erre ösztönzi a tanulókat is, illetve nagy figyelmet fordít arra, hogy a tanulók tudása fejlődjön a fenntarthatóság terén.",
+            "Az iskola az energiatakarékosságot és a környezettudatosságot érvényesíti minden területen (pl. hulladékminimalizálás, szelektív hulladékgyűjtés, modern világítás, zöld növények, szellőzés, energiatakarékosság, az anyagok újrahasznosítható papírra való nyomtatása, stb.).",
+            "Az iskola hatékony pályaorientációs és pályaválasztási tevékenységet folytat."
+        ],
+        "valaszok": [
+            "nincs információm = 0",
+            "egyáltalán nem igaz = 1",
+            "többnyire nem igaz = 2",
+            "általában igaz = 3",
+            "teljesen igaz = 4"
+        ]
+    }
+]

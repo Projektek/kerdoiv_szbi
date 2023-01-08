@@ -1,0 +1,19 @@
+<%- include('layouts/header')  %>
+	<div class="sablon">
+		<form action="/letrehoz" method="post" autocomplete="off">
+			<label for="cim">A kérdőív címe: </label><br />
+			<input type="text" name="cim" id="cim" /><br />
+				<% for( let i = 0; i < kerdes; i++ ) { %>
+					<label><%= i + 1 %>. kérdés:</label><br />
+					<input type="text" name="kerdesek" /><br />
+				<% } %>
+			<hr /><br />
+				<% for( let i = 0; i < valasz; i++ ) { %>
+					<label><%= i + 1 %>. válasz:</label><br />
+					<input type="text" name="valaszok" /><br />
+				<% } %>
+			<button type="submit">Létrehoz</button>
+		</form>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="kepek/logo.jpg" type="image/x-icon" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="stylesheet" href="/css/stilus.css" />
+        <title>Kérdőív</title>
+    </head>
+    <body>
+        <div class="nav-tarto">
+            <p class="menu-icon">
+                <span class="material-symbols-outlined">menu</span>
+            </p>
+            <nav>
+                <% if (statusz === 'p') { %>
+                    <li>
+                        <a href="/classes"><span>Osztályok</span></a>
+                    </li>
+                    <li>
+                        <a href="/tanar"><span>Tanárok</span></a>
+                    </li>
+                    <li>
+                        <a href="/kihol"><span>Ki hol tanít</span></a>
+                    </li>
+                    <li>
+                        <a href="/kerdoiv"><span>Kérdőív sablon</span></a>
+                    </li>
+                    <li>
+                        <a href="/kerdoivek"><span>Kérdőívek</span></a>
+                    </li>
+                    <li>
+                        <a href="/ertekeles"><span>Értékelések</span></a>
+                    </li>
+                <% } else if (statusz === 't') { %>
+                    <li>
+                        <a href="/kerdoivek"><span>Tanulói Kérdőívek</span></a>
+                    </li>
+                <% }%>
+                <li>
+                    <a href="/kilep"><span>Kilép</span></a>
+                </li>
+            </nav>
+        </div>

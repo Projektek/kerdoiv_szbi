@@ -1,0 +1,30 @@
+<%- include('layouts/header')  %>
+	<div class="sablon">
+		<form action="/modosit" method="post" autocomplete="off">
+			<input type="hidden" name="cim" value="<%= obj.cim %>" />
+			<label for="ujcim">A kérdőív címe: </label><br />
+			<input type="text" name="ujcim" id="ujcim" value="<%= obj.cim %>" /><br />
+				<% if (Array.isArray(obj.kerdesek)) { %>
+					<% for( let i = 0; i < obj.kerdesek.length; i++ ) { %>
+						<label><%= i + 1 %>. kérdés:</label><br />
+						<input type="text" name="kerdesek" value="<%= obj.kerdesek[i] %>" /><br />
+						<% } %>
+				<% } else { %>			
+					<label>1. kérdés:</label><br />
+					<input type="text" name="kerdesek" value="<%= obj.kerdesek %>" /><br />
+				<% } %>
+			<hr /><br />
+				<% if (Array.isArray(obj.valaszok)) { %>
+					<% for( let i = 0; i < obj.valaszok.length; i++ ) { %>
+						<label><%= i + 1 %>. válasz:</label><br />
+						<input type="text" name="valaszok" value="<%= obj.valaszok[i] %>" /><br />
+					<% } %>
+				<% } else { %>
+					<label>1. válasz:</label><br />
+					<input type="text" name="valaszok" value="<%= obj.valaszok %>" /><br />
+				<% } %>
+			<button type="submit">Módosítás</button>
+		</form>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<%- include('layouts/header')  %> 
+		<h1>Kérdőív</h1>
+		<div class="urlap-tarto">
+			<form action="/kiertekel" method="post">
+				<input type="hidden" name="cim" value="<%= obj.cim %>_<%= oktato %>" />
+				<table>
+					<h2><%= obj.cim %> <%= oktato %></h2>
+					<% if (Array.isArray(obj.kerdesek)) { %>
+						<% for( let i = 0; i < obj.kerdesek.length; i++ ) { %>
+							<tr>
+								<td><%= obj.kerdesek[i] %></td>
+								<td>
+									<select name="valaszok">
+										<% if (Array.isArray(obj.valaszok)) { %>
+											<% for( let j = 0; j < obj.valaszok.length; j++) { %>
+												<option value="<%= j %>">
+													<%= obj.valaszok[j] %>
+												</option>
+											<% } %>
+										<% } else { %>
+											<option value="0"><%= obj.valaszok %></option>
+										<% } %>
+									</select>
+								</td>
+							</tr>
+						<% } %>
+					<% } else { %>
+						<tr>
+							<td><%= obj.kerdesek  %></td>
+							<td>
+								<select name="valaszok">
+									<% if (Array.isArray(obj.valaszok)) { %>
+										<% for( let j = 0; j < obj.valaszok.length; j++) { %>
+											<option value="<%= j %>">
+												<%= obj.valaszok[j] %>
+											</option>
+										<% } %>
+									<% } else { %>
+										<option value="0"><%= obj.valaszok %></option>
+									<% } %>
+								</select>
+							</td>
+						</tr>
+					<% } %>
+				</table>
+				<% if (statusz === 't') { %>
+					<button>Kiértékel</button> 
+				<% } %>
+			</form>
+		</div>
+	</body>
+</html>

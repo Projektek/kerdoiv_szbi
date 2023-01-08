@@ -1,0 +1,16 @@
+<%- include('layouts/header')  %> 
+        <h1>Tanárok</h1>
+        <ul>
+            <% teachers.forEach(element => { %>
+            <li><%= element.id %>. <%= element.nev %></li>
+            <% }) %>
+        </ul>
+        <form action="/tanar" method="post" autocomplete="off">
+            <label for="id">Tanár sorszáma: </label>
+            <input type="number" name="id" id="id" min="1" /><br />
+            <label for="nev">Tanár neve: </label>
+            <input type="text" name="nev" id="nev" /><br />
+            <button>Feltölt</button>
+        </form>
+    </body>
+</html>

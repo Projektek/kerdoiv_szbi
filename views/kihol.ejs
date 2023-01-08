@@ -1,0 +1,44 @@
+<%- include('layouts/header')  %> 
+        <h1>Ki hol tanít</h1>
+        <form action="/kihol" method="post">
+            <table>
+                <tr>
+                    <td></td>
+                    <% classes.forEach(element => { %>
+                    <td><%= element.osztaly %></td>
+                    <% }) %>
+                </tr>
+                <% teachers.forEach(element => { %>
+                <tr>
+                    <td><%= element.nev %></td>
+                    <% for( let index = 0; index < classes.length; index++ ) { %>
+                    <td>
+                        <input
+                            type="checkbox"
+                            name="<%= classes[index].osztaly %>"
+                            value="<%= element.nev %>"
+							<% for (let i = 0; i < osztalyok.length; i++) { %>
+								<% if (osztalyok[i] == classes[index].osztaly) { %>
+									<% if (Array.isArray(tanarok[i])) { %>
+										<% for (let j = 0; j < tanarok[i].length; j++) { %>
+											<% if (tanarok[i][j] == element.nev) { %>
+												checked
+											<% } %>
+										<% } %>
+									<% } else { %>
+										<% if (tanarok[i] == element.nev) { %>
+											checked
+										<% } %>
+									<% } %>
+								<% } %>
+							<% } %>
+                        />
+                    </td>
+                    <% } %>
+                </tr>
+                <% }) %>
+            </table>
+            <button>Feldolgoz</button>
+        </form>
+    </body>
+</html>
