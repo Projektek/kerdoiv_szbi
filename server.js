@@ -24,7 +24,7 @@ app.use('/tablazatok', require('./routes/tablazatokRoutes'));
 app.use('/tablazat', require('./routes/tablazatRoutes'));
 app.use('/kilep', require('./routes/kilepRoutes'));
 
-const PORT = process.env.PORT || 4500;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
 });
