@@ -1,5 +1,5 @@
 const express = require('express');
-const { getKerdoivek } = require('../controllers/kerdoivekcontrollers');
+const { getKerdoivek } = require('../controllers/kerdoivekControllers');
 
 const router = express.Router();
 
