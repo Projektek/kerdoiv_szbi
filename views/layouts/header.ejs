@@ -14,7 +14,7 @@
                 <span class="material-symbols-outlined">menu</span>
             </p>
             <nav>
-                <% if (statusz === 'p') { %>
+                <% if (statusz === 'f') { %>
                     <li>
                         <a href="/classes"><span>Osztályok</span></a>
                     </li>
@@ -33,9 +33,9 @@
                     <li>
                         <a href="/ertekeles"><span>Értékelések</span></a>
                     </li>
-                <% } else if (statusz === 't') { %>
+                <% } else if (statusz === 't' || statusz === 'p' || statusz === 'f') { %>
                     <li>
-                        <a href="/kerdoivek"><span>Tanulói Kérdőívek</span></a>
+                        <a href="/kerdoivek"><span>Kitöltendő Kérdőívek</span></a>
                     </li>
                 <% }%>
                 <li>
