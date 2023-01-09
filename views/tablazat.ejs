@@ -11,7 +11,7 @@
     </head>
     <body>
         <nav>
-            <% if (statusz === 'p') { %>
+            <% if (statusz === 'f') { %>
                 <li>
                     <a href="/classes"><span>Osztályok</span></a>
                 </li>
@@ -30,7 +30,7 @@
                 <li>
                     <a href="/ertekeles"><span>Értékelések</span></a>
                 </li>
-            <% } else if (statusz === 't') { %>
+            <% } else if (statusz === 'p' || statusz === 't') { %>
                 <li>
                     <a href="/kerdoivek"><span>Tanulói Kérdőívek</span></a>
                 </li>

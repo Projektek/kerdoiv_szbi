@@ -8,7 +8,8 @@ exports.getKiertekel = (req, res) => {
 exports.postKiertekel = async (req, res) => {
     const belepUt = path.join(__dirname, '..', 'data', 'belep.json');
     const { cim, valaszok } = req.body;
-
+    const cimek = cim.split('_')[0];
+    console.log(cim);
     try {
         const belep = await fsPromises.readFile(belepUt, { encoding: 'utf-8' });
         const { azon, osztaly } = JSON.parse(belep);
@@ -30,6 +31,8 @@ exports.postKiertekel = async (req, res) => {
             oszt = '12a';
         } else if (osztaly.startsWith('12b')) {
             oszt = '12b';
+        } else {
+            oszt = 'iskola';
         }
 
         const osztalyUt = path.join(
@@ -54,7 +57,12 @@ exports.postKiertekel = async (req, res) => {
         });
         const iskolaTomb = JSON.parse(iskolaData);
 
-        let toltAdat = { azon, cim, valaszok };
+        let toltAdat = {};
+        if (!cim.split('_')[1]) {
+            toltAdat = { azon, cim: cimek, valaszok };
+        } else {
+            toltAdat = { azon, cim, valaszok };
+        }
         osztTomb.push(toltAdat);
         iskolaTomb.push(toltAdat);
 

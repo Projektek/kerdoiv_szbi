@@ -7,12 +7,14 @@ exports.getTeszt = async (req, res) => {
     const cimek = req.query.cim;
     const cim = cimek.split('_')[0];
     const oktato = cimek.split('_')[1];
+    console.log(cim, cimek);
 
     try {
         const kerdoiv = await fsPromises.readFile(ut, { encoding: 'utf-8' });
         const tomb = await JSON.parse(kerdoiv);
         const belep = await fsPromises.readFile(belepUt, { encoding: 'utf-8' });
         const { statusz, azon, osztaly } = JSON.parse(belep);
+
         let oszt = '';
 
         if (osztaly.startsWith('9a')) {
@@ -31,25 +33,34 @@ exports.getTeszt = async (req, res) => {
             oszt = '12a';
         } else if (osztaly.startsWith('12b')) {
             oszt = '12b';
+        } else {
+            oszt = 'iskola';
         }
 
         let vanE = false;
 
+        const osztalyUt = path.join(
+            __dirname,
+            '..',
+            'eredmenyek',
+            `${oszt}.json`
+        );
+
+        const osztData = await fsPromises.readFile(osztalyUt, {
+            encoding: 'utf-8',
+        });
+        const osztTomb = JSON.parse(osztData);
+
         if (oktato) {
-            const osztalyUt = path.join(
-                __dirname,
-                '..',
-                'eredmenyek',
-                `${oszt}.json`
-            );
-
-            const osztData = await fsPromises.readFile(osztalyUt, {
-                encoding: 'utf-8',
-            });
-            const osztTomb = JSON.parse(osztData);
-
             for (let i = 0; i < osztTomb.length; i++) {
                 if (osztTomb[i].cim === cimek && osztTomb[i].azon === azon) {
+                    vanE = true;
+                    break;
+                }
+            }
+        } else {
+            for (let i = 0; i < osztTomb.length; i++) {
+                if (osztTomb[i].cim === cim && osztTomb[i].azon === azon) {
                     vanE = true;
                     break;
                 }

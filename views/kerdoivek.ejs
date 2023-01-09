@@ -1,7 +1,7 @@
 <%- include('layouts/header')  %>
 		<h1>Kérdőívek</h1>
 		<table>
-			<% if (statusz === 'p' || statusz === 'f') { %>
+			<% if (statusz === 'f') { %>
 				<% kerdoivek.forEach(element => { %>
 					<tr>
 						<td><a href="/teszt/?cim=<%= element.cim %>"><%= element.cim %></a></td>
@@ -22,6 +22,12 @@
 							<td><a href="/teszt/?cim=<%= element.cim %>"><%= element.cim %> <%=   %> </a></td>
 						</tr>
 					<% } %>
+				<% }) %>
+			<% } else if (statusz === 'p') { %>
+				<% kerdoivek.forEach(element => { %>
+					<tr>
+						<td><a href="/teszt/?cim=<%= element.cim %>"><%= element.cim %></a></td>
+					</tr>
 				<% }) %>
 			<% } %>
 		</table>

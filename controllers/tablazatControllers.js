@@ -35,8 +35,28 @@ exports.getTablazat = async (req, res) => {
 
             for (let i = 0; i < kerdoivek.length; i++) {
                 if (kerdoivek[i].cim === cim) {
-                    kerdesek = kerdoivek[i].kerdesek;
-                    valaszok = kerdoivek[i].valaszok;
+                    if (
+                        Array.isArray(kerdoivek[i].kerdesek) &&
+                        Array.isArray(kerdoivek[i].valaszok)
+                    ) {
+                        kerdesek = kerdoivek[i].kerdesek;
+                        valaszok = kerdoivek[i].valaszok;
+                    } else if (
+                        Array.isArray(kerdoivek[i].kerdesek) &&
+                        !Array.isArray(kerdoivek[i].valaszok)
+                    ) {
+                        kerdesek = kerdoivek[i].kerdesek;
+                        valaszok.push(kerdoivek[i].valaszok);
+                    } else if (
+                        !Array.isArray(kerdoivek[i].kerdesek) &&
+                        Array.isArray(kerdoivek[i].valaszok)
+                    ) {
+                        kerdesek.push(kerdoivek[i].kerdesek);
+                        valaszok = kerdoivek[i].valaszok;
+                    } else {
+                        kerdesek.push(kerdoivek[i].kerdesek);
+                        valaszok.push(kerdoivek[i].valaszok);
+                    }
                 }
             }
 
@@ -53,26 +73,20 @@ exports.getTablazat = async (req, res) => {
             for (let k = 0; k < kerdesek.length; k++) {
                 for (let i = 0; i < osztalyAdatok.length; i++) {
                     if (osztalyAdatok[i].cim === cimek) {
-                        if (osztalyAdatok[i].valaszok[k] === '0') {
-                            vegsoSzamok[k][0]++;
-                        } else if (osztalyAdatok[i].valaszok[k] === '1') {
-                            vegsoSzamok[k][1]++;
-                        } else if (osztalyAdatok[i].valaszok[k] === '2') {
-                            vegsoSzamok[k][2]++;
-                        } else if (osztalyAdatok[i].valaszok[k] === '3') {
-                            vegsoSzamok[k][3]++;
-                        } else if (osztalyAdatok[i].valaszok[k] === '4') {
-                            vegsoSzamok[k][4]++;
+                        for (let j = 0; j < valaszok.length; j++) {
+                            if (osztalyAdatok[i].valaszok[k] === `${j}`) {
+                                vegsoSzamok[k][j]++;
+                            }
                         }
                     }
                 }
             }
 
-            for (let i = 0; i < osztalyAdatok.length; i++) {
-                for (let j = 0; j < osztalyAdatok[i].valaszok.length; j++) {
-                    vegsoSzamok[i][j];
-                }
-            }
+            // for (let i = 0; i < kerdesek.length; i++) {
+            //     for (let j = 0; j < valaszok.length; j++) {
+            //         vegsoSzamok[i][j];
+            //     }
+            // }
 
             const mappaCim = `${cimek}_${hol}.csv`;
 
