@@ -1,5 +1,6 @@
 const fsPromises = require('fs').promises;
 const path = require('path');
+const Answer = require('../model/Answer');
 
 exports.getKiertekel = (req, res) => {
     res.send('get kiértékelés');
@@ -9,7 +10,7 @@ exports.postKiertekel = async (req, res) => {
     const belepUt = path.join(__dirname, '..', 'data', 'belep.json');
     const { cim, valaszok } = req.body;
     const cimek = cim.split('_')[0];
-    console.log(cim);
+
     try {
         const belep = await fsPromises.readFile(belepUt, { encoding: 'utf-8' });
         const { azon, osztaly } = JSON.parse(belep);
@@ -74,6 +75,9 @@ exports.postKiertekel = async (req, res) => {
             encoding: 'utf-8',
             flag: 'w',
         });
+
+        const newAnswer = new Answer(toltAdat);
+        await newAnswer.save();
 
         res.redirect('/kerdoivek');
     } catch (error) {

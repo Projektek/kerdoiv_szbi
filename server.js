@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -25,6 +26,15 @@ app.use('/tablazat', require('./routes/tablazatRoutes'));
 app.use('/kilep', require('./routes/kilepRoutes'));
 
 const PORT = process.env.PORT || 3502;
-app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.DB_URI, (err) => {
+    if (err) {
+        console.log(err.message);
+    }
+
+    console.log('Sikeres adatbázis csatlakozás');
+    app.listen(PORT, () => {
+        console.log(`http://localhost:${PORT}`);
+    });
 });

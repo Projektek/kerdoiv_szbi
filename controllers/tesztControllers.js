@@ -7,7 +7,6 @@ exports.getTeszt = async (req, res) => {
     const cimek = req.query.cim;
     const cim = cimek.split('_')[0];
     const oktato = cimek.split('_')[1];
-    console.log(cim, cimek);
 
     try {
         const kerdoiv = await fsPromises.readFile(ut, { encoding: 'utf-8' });
