@@ -59,10 +59,13 @@ exports.postKiertekel = async (req, res) => {
         const iskolaTomb = JSON.parse(iskolaData);
 
         let toltAdat = {};
+        let adatBazis = {};
         if (!cim.split('_')[1]) {
             toltAdat = { azon, cim: cimek, valaszok };
+            adatBazis = { oszt, cim: cimek, valaszok };
         } else {
             toltAdat = { azon, cim, valaszok };
+            adatBazis = { oszt, cim, valaszok };
         }
         osztTomb.push(toltAdat);
         iskolaTomb.push(toltAdat);
@@ -76,7 +79,7 @@ exports.postKiertekel = async (req, res) => {
             flag: 'w',
         });
 
-        const newAnswer = new Answer(toltAdat);
+        const newAnswer = new Answer(adatBazis);
         await newAnswer.save();
 
         res.redirect('/kerdoivek');
