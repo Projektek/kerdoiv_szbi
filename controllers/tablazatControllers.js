@@ -1,9 +1,11 @@
 const fsPromises = require('fs').promises;
 const path = require('path');
+const Answer = require('../model/Answer');
 
 exports.getTablazat = async (req, res) => {
     const cimek = req.query.cim;
     const hol = req.query.hol;
+    console.log(hol);
 
     const cim = cimek.split('_')[0];
 
@@ -12,19 +14,22 @@ exports.getTablazat = async (req, res) => {
         const belep = await fsPromises.readFile(belepUt, { encoding: 'utf-8' });
         const { statusz } = JSON.parse(belep);
 
-        const osztalyUt = path.join(
-            __dirname,
-            '..',
-            'eredmenyek',
-            `${hol}.json`
-        );
-        const osztalyAdat = await fsPromises.readFile(osztalyUt, {
-            encoding: 'utf-8',
-        });
+        const adatBazisAdatok = await Answer.find();
+        console.log(adatBazisAdatok);
 
-        const osztalyAdatok = await JSON.parse(osztalyAdat);
+        let vanE = false;
 
-        if (osztalyAdatok.length > 0) {
+        for (let i = 0; i < adatBazisAdatok.length; i++) {
+            if (
+                (adatBazisAdatok[i].azon === hol &&
+                    adatBazisAdatok[i].cim === cimek) ||
+                (adatBazisAdatok[i].cim === cimek && hol === 'iskola')
+            ) {
+                vanE = true;
+            }
+        }
+
+        if (vanE) {
             const cimUt = path.join(__dirname, '..', 'data', 'kerdoivek.json');
             const kerdoivekAdat = await fsPromises.readFile(cimUt, {
                 encoding: 'utf-8',
@@ -71,10 +76,13 @@ exports.getTablazat = async (req, res) => {
             }
 
             for (let k = 0; k < kerdesek.length; k++) {
-                for (let i = 0; i < osztalyAdatok.length; i++) {
-                    if (osztalyAdatok[i].cim === cimek) {
+                for (let i = 0; i < adatBazisAdatok.length; i++) {
+                    if (
+                        adatBazisAdatok[i].azon === hol &&
+                        adatBazisAdatok[i].cim === cimek
+                    ) {
                         for (let j = 0; j < valaszok.length; j++) {
-                            if (osztalyAdatok[i].valaszok[k] === `${j}`) {
+                            if (adatBazisAdatok[i].valaszok[k] === `${j}`) {
                                 vegsoSzamok[k][j]++;
                             }
                         }
@@ -82,11 +90,19 @@ exports.getTablazat = async (req, res) => {
                 }
             }
 
-            // for (let i = 0; i < kerdesek.length; i++) {
-            //     for (let j = 0; j < valaszok.length; j++) {
-            //         vegsoSzamok[i][j];
-            //     }
-            // }
+            if (hol === 'iskola') {
+                for (let k = 0; k < kerdesek.length; k++) {
+                    for (let i = 0; i < adatBazisAdatok.length; i++) {
+                        if (adatBazisAdatok[i].cim === cimek) {
+                            for (let j = 0; j < valaszok.length; j++) {
+                                if (adatBazisAdatok[i].valaszok[k] === `${j}`) {
+                                    vegsoSzamok[k][j]++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             const mappaCim = `${cimek}_${hol}.csv`;
 
