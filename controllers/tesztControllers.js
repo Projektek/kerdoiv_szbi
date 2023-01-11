@@ -1,5 +1,6 @@
 const fsPromises = require('fs').promises;
 const path = require('path');
+const Pupil = require('../model/Pupil');
 
 exports.getTeszt = async (req, res) => {
     const ut = path.join(__dirname, '..', 'data', 'kerdoivek.json');
@@ -14,57 +15,79 @@ exports.getTeszt = async (req, res) => {
         const belep = await fsPromises.readFile(belepUt, { encoding: 'utf-8' });
         const { statusz, azon, osztaly } = JSON.parse(belep);
 
-        let oszt = '';
+        // let oszt = '';
 
-        if (osztaly.startsWith('9a')) {
-            oszt = '9a';
-        } else if (osztaly.startsWith('9b')) {
-            oszt = '9b';
-        } else if (osztaly.startsWith('10a')) {
-            oszt = '10a';
-        } else if (osztaly.startsWith('10b')) {
-            oszt = '10b';
-        } else if (osztaly.startsWith('11a')) {
-            oszt = '11a';
-        } else if (osztaly.startsWith('11b')) {
-            oszt = '11b';
-        } else if (osztaly.startsWith('12a')) {
-            oszt = '12a';
-        } else if (osztaly.startsWith('12b')) {
-            oszt = '12b';
-        } else {
-            oszt = 'iskola';
-        }
-
+        // if (osztaly.startsWith('9a')) {
+        //     oszt = '9a';
+        // } else if (osztaly.startsWith('9b')) {
+        //     oszt = '9b';
+        // } else if (osztaly.startsWith('10a')) {
+        //     oszt = '10a';
+        // } else if (osztaly.startsWith('10b')) {
+        //     oszt = '10b';
+        // } else if (osztaly.startsWith('11a')) {
+        //     oszt = '11a';
+        // } else if (osztaly.startsWith('11b')) {
+        //     oszt = '11b';
+        // } else if (osztaly.startsWith('12a')) {
+        //     oszt = '12a';
+        // } else if (osztaly.startsWith('12b')) {
+        //     oszt = '12b';
+        // } else {
+        //     oszt = 'iskola';
+        // }
+        console.log(azon, cimek);
         let vanE = false;
 
-        const osztalyUt = path.join(
-            __dirname,
-            '..',
-            'eredmenyek',
-            `${oszt}.json`
-        );
+        const newPupil = await Pupil.findOne({ azon });
 
-        const osztData = await fsPromises.readFile(osztalyUt, {
-            encoding: 'utf-8',
-        });
-        const osztTomb = JSON.parse(osztData);
-
-        if (oktato) {
-            for (let i = 0; i < osztTomb.length; i++) {
-                if (osztTomb[i].cim === cimek && osztTomb[i].azon === azon) {
+        if (newPupil) {
+            let kerdok = newPupil.cim;
+            console.log(kerdok);
+            for (let i = 0; i < kerdok.length; i++) {
+                if (kerdok[i] === cimek) {
                     vanE = true;
                     break;
                 }
+            }
+
+            if (!vanE) {
+                kerdok.push(cimek);
+                await Pupil.findOneAndUpdate({ azon }, { cim: kerdok });
             }
         } else {
-            for (let i = 0; i < osztTomb.length; i++) {
-                if (osztTomb[i].cim === cim && osztTomb[i].azon === azon) {
-                    vanE = true;
-                    break;
-                }
-            }
+            const diak = new Pupil({ azon, cim: [cimek] });
+            await diak.save();
+            // await Pupil.findOneAndUpdate({ azon }, { cimek });
         }
+
+        // const osztalyUt = path.join(
+        //     __dirname,
+        //     '..',
+        //     'eredmenyek',
+        //     `${oszt}.json`
+        // );
+
+        // const osztData = await fsPromises.readFile(osztalyUt, {
+        //     encoding: 'utf-8',
+        // });
+        // const osztTomb = JSON.parse(osztData);
+
+        // if (oktato) {
+        //     for (let i = 0; i < osztTomb.length; i++) {
+        //         if (osztTomb[i].cim === cimek && osztTomb[i].azon === azon) {
+        //             vanE = true;
+        //             break;
+        //         }
+        //     }
+        // } else {
+        //     for (let i = 0; i < osztTomb.length; i++) {
+        //         if (osztTomb[i].cim === cim && osztTomb[i].azon === azon) {
+        //             vanE = true;
+        //             break;
+        //         }
+        //     }
+        // }
 
         if (vanE) {
             res.render('talalat', { statusz });
